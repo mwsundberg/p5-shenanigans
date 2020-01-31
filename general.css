@@ -8,6 +8,7 @@ html, body {
 
 body {
 	position: relative;
+	font-family: Inter, Helvetica, sans-serif;
 }
 
 nav {
@@ -16,14 +17,23 @@ nav {
 	left: 1em;
 	background-color: black;
 	color: white;
+	z-index: 1;
+}
+nav ul {
+	padding: 0;
+	margin: 1em;
 }
 nav li {
 	display: inline-block;
+	list-style-type: none;
+	margin: 0 0.5em;
 }
 
-#canvas {
-	position: absolute;
-	top: 0;
-	width: 100%;
-	right: 0;
+nav a {
+	color: white;
+	text-decoration: none;
+}
+
+#sketch {
+	z-index: 0;
 }

@@ -1,5 +1,8 @@
 function setup() {
-	let canvas = standardCanvas();
+	var canvas = createCanvas(windowWidth, windowHeight);
+	canvas.style('display', 'block');
+	canvas.parent('sketch');
+	background(255, 128, 128);
 }
 
 function draw() {
@@ -8,6 +11,7 @@ function draw() {
 
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
+
 }
 
 function circlePoints(centerX, centerY, radius, theta) {
@@ -16,9 +20,5 @@ function circlePoints(centerX, centerY, radius, theta) {
 
 function standardCanvas(){
 	// Make a canvas and pre-populate it with some default settings
-	let canvas = createCanvas(windowWidth, windowHeight);
-	canvas.style('display', 'block');
-	canvas.background(255, 128, 128);
-	canvas.parent('sketch');
-	return canvas;
+	
 }

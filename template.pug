@@ -8,10 +8,13 @@ html
 	body
 		nav
 			ul
+				li= title
+				li= "(" + timestamp + ")"
 				li: a(href="../") Home
-				li: a(href="https://github.com/mwsundberg/p5-shenanigans") Github Repo
-				li: a(href=("https://github.com/mwsundberg/p5-shenanigans/tree/master/" + gitPath)) This Sketch (#{timestamp})
-			
+				li: a(href="https://github.com/mwsundberg/p5-shenanigans") Github
+				//- A clever trick to add in the dirname (extracted from the gulp processing of the json file)
+				li: a(href=("https://github.com/mwsundberg/p5-shenanigans/tree/master/" + gitPath)) #{title} on Github
+
 		#sketch
 		//- Load P5 from the CDN
 		script(src="https://cdn.jsdelivr.net/npm/p5@0.10.2/lib/p5.min.js")

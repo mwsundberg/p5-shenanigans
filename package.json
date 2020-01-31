@@ -4,7 +4,8 @@
   "description": "Messing around with generative art",
   "main": "gulpfile.js",
   "scripts": {
-    "build-all": "gulp buildAll"
+    "build": "gulp buildAll",
+    "watch": "gulp watchAll"
   },
   "repository": {
     "type": "git",

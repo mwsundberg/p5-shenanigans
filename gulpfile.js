@@ -6,10 +6,11 @@ const uglify = require('gulp-uglify');
 const through2 = require('through2');
 const rename = require('gulp-rename');
 
-// Compile the pug template
-const pugTemplate = pug.compileFile("template.pug");
+// Code for the pug template
+const pugTemplatePath = "template.pug";
+let pugTemplate = pug.compileFile(pugTemplatePath);
 
-function buildPug(path) {
+function buildHTML(path) {
 	return src("*/info.json")
 		.pipe(through2.obj(function(file, _, cb) {
 			// Inline template to build a HTML file from the info.json
@@ -34,7 +35,6 @@ function buildPug(path) {
 
 function buildJs(jsonFile, callback){
 	return src("*/sketch.js")
-		.pipe()
 		.pipe(uglify())
 		.pipe(rename(function(path) {
 			// Add a .min. into the js name
@@ -44,4 +44,21 @@ function buildJs(jsonFile, callback){
 		.pipe(dest("."));
 }
 
-exports.buildAll = parallel(buildPug);
+exports.buildAll = parallel(buildHTML, buildJs);
+
+exports.watchAll = function () {
+	// Build once
+	exports.buildAll();
+
+	// Update the pug template if it changes
+	watch(pugTemplatePath, series(function(cb){
+		pugTemplate = pug.compileFile(pugTemplatePath);
+		cb();
+	}, buildHTML));
+
+	// Update html processing
+	watch("*/info.json", buildHTML);
+
+	// Update js processing
+	watch(["**/*.js", "!node_modules/*", "!**/*.min.js"], buildJs);
+}
