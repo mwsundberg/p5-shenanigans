@@ -1,0 +1,30 @@
+{
+  "name": "p5-shenanigans",
+  "version": "0.0.1",
+  "description": "Messing around with generative art",
+  "main": "gulpfile.js",
+  "scripts": {
+    "build-all": "gulp buildAll"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mwsundberg/p5-shenanigans.git"
+  },
+  "author": "Matthew Sundberg <matthew@mws.is>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mwsundberg/p5-shenanigans/issues"
+  },
+  "homepage": "https://github.com/mwsundberg/p5-shenanigans#readme",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-cli": "^2.2.0",
+    "gulp-pug": "^4.0.1",
+    "gulp-rename": "^2.0.0",
+    "gulp-uglify": "^3.0.2",
+    "pug": "^2.0.4",
+    "rollup": "^1.30.1",
+    "through2": "^3.0.1"
+  },
+  "dependencies": {}
+}
