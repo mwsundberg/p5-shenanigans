@@ -11,14 +11,5 @@ function draw() {
 
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
-
-}
-
-function circlePoints(centerX, centerY, radius, theta) {
-    
-}
-
-function standardCanvas(){
-	// Make a canvas and pre-populate it with some default settings
-	
+	background(255, 128, 128);
 }

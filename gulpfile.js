@@ -2,6 +2,7 @@
 const {src, dest, series, parallel, watch} = require('gulp');
 const pug = require('pug');
 const path = require('path');
+const babel = require('gulp-babel');
 const uglify = require('gulp-uglify');
 const through2 = require('through2');
 const rename = require('gulp-rename');
@@ -16,7 +17,9 @@ function buildHTML(path) {
 			// Inline template to build a HTML file from the info.json
 			if(file.isBuffer()){
 				const pugResults = pugTemplate({
+					// Populate the object passed to pug with all of the info.json data
 					...(JSON.parse(file.contents.toString())),
+					// Get the directory name relative to the base folder (with the info.json removed)
 					gitPath: file.relative.slice(0, -("info.json".length))
 				});
 				file.contents = Buffer.from(pugResults);
@@ -35,6 +38,9 @@ function buildHTML(path) {
 
 function buildJs(jsonFile, callback){
 	return src("*/sketch.js")
+		.pipe(babel({
+            presets: ['@babel/env']
+        }))
 		.pipe(uglify())
 		.pipe(rename(function(path) {
 			// Add a .min. into the js name
