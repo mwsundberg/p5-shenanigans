@@ -39,8 +39,8 @@ function buildHTML(path) {
 function buildJs(jsonFile, callback){
 	return src("*/sketch.js")
 		.pipe(babel({
-            presets: ['@babel/env']
-        }))
+			presets: ['@babel/env']
+		}))
 		.pipe(uglify())
 		.pipe(rename(function(path) {
 			// Add a .min. into the js name

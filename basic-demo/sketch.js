@@ -6,10 +6,10 @@ function setup() {
 }
 
 function draw() {
-    ellipse(mouseY, mouseX, 80, 80);
+	ellipse(mouseY, mouseX, 80, 80);
 }
 
 function windowResized() {
-    resizeCanvas(windowWidth, windowHeight);
+	resizeCanvas(windowWidth, windowHeight);
 	background(255, 128, 128);
 }
