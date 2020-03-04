@@ -12,7 +12,7 @@ const rows = 2;
 const cols = 3;
 
 function draw() {
-	background(255, 128, 128);
+	background(20);
 
 	// Calculate locations
 	const effectiveWidth = windowWidth * widthPercent;
@@ -31,8 +31,9 @@ function draw() {
 			translate(x * effectiveWidth/(cols - 1), y * effectiveHeight/(rows - 1));
 
 			// Draw a few snowflakes overlapping
-			for(const i of range(random(4, 15))){
-				stroke(255 - i * 10);
+			const numSnowflakes = random(4, 15);
+			for(const i of range(numSnowflakes)){
+				stroke(255 - i * 200 / numSnowflakes);
 				strokeWeight(random(1, 10));
 
 				// Draw the snowflake itself
@@ -40,7 +41,7 @@ function draw() {
 					outerRadius,
 					random(10, 70),
 					random(0, TWO_PI),
-					random(0, TWO_PI));
+					random(PI / 16, PI));
 			}
 			pop();
 		}
@@ -60,14 +61,14 @@ function rThetaToY(r, theta){
 }
 
 
-function drawSnowFlake(outerRadius, innerRadius, theta1, theta2){
-	// Relocate the origin so drawing effectively from the upper left corner
-	push();
-	bezier(rThetaToX(outerRadius, theta1), rThetaToY(outerRadius, theta1),
-		rThetaToX(innerRadius, theta1), rThetaToY(innerRadius, theta1),
-		rThetaToX(innerRadius, theta2), rThetaToY(innerRadius, theta2),
-		rThetaToX(outerRadius, theta2), rThetaToY(outerRadius, theta2));
-	pop();
+function drawSnowFlake(outerRadius, innerRadius, theta, width){
+	const leftTheta = theta + width/2;
+	const rightTheta = theta - width/2;
+	// The
+	bezier(rThetaToX(outerRadius, leftTheta), rThetaToY(outerRadius, leftTheta),
+		rThetaToX(innerRadius, leftTheta), rThetaToY(innerRadius, leftTheta),
+		rThetaToX(innerRadius, rightTheta), rThetaToY(innerRadius, rightTheta),
+		rThetaToX(outerRadius, rightTheta), rThetaToY(outerRadius, rightTheta));
 }
 
 function windowResized() {
